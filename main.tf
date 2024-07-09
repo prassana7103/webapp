@@ -1,17 +1,18 @@
 # Define the provider
 provider "azurerm" {
   features {}
+  subscription_id = "23a27e59-9630-46e7-a345-9a520d4a36f7"  
 }
 
 # Resource Group
 resource "azurerm_resource_group" "rg" {
-  name     = "example-resources"
+  name     = "Streamlit_poc"
   location = "West Europe"
 }
 
 # Azure Container Registry
 resource "azurerm_container_registry" "acr" {
-  name                = "exampleACR1132"
+  name                = "streamlitACR_POC"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku                 = "Standard"
@@ -24,7 +25,7 @@ resource "azurerm_container_registry" "acr" {
 
 # App Service Plan
 resource "azurerm_service_plan" "asp" {
-  name                = "example-asp"
+  name                = "streamlit-asp"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   os_type             = "Linux"
@@ -37,7 +38,7 @@ resource "azurerm_service_plan" "asp" {
 
 # Web App
 resource "azurerm_linux_web_app" "webapp" {
-  name                = "example-webapp-1132"
+  name                = "streamlit-webapp"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   service_plan_id     = azurerm_service_plan.asp.id
