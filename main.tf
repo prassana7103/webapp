@@ -1,7 +1,7 @@
 # Define the provider
 provider "azurerm" {
   features {}
-  subscription_id = "23a27e59-9630-46e7-a345-9a520d4a36f7"  
+  subscription_id = ""  
 }
 
 # Resource Group
